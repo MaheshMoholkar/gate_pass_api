@@ -102,3 +102,38 @@ func (h *StaffHandler) HandleStaffExit(ctx *fiber.Ctx) error {
 
 	return ctx.SendStatus(fiber.StatusOK)
 }
+
+func (h *StaffHandler) HandleGetAllStaff(ctx *fiber.Ctx) error {
+	query := `SELECT name, mobile_no FROM staff`
+
+	rows, err := h.store.DB.Query(query)
+	if err != nil {
+		return ctx.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"status":  "error",
+			"message": "Internal Server Error",
+		})
+	}
+	defer rows.Close()
+
+	var staffList []types.Staff
+	for rows.Next() {
+		var staff types.Staff
+		err := rows.Scan(&staff.Name, &staff.MobileNo)
+		if err != nil {
+			return ctx.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+				"status":  "error",
+				"message": "Internal Server Error",
+			})
+		}
+		staffList = append(staffList, staff)
+	}
+
+	if err := rows.Err(); err != nil {
+		return ctx.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"status":  "error",
+			"message": "Internal Server Error",
+		})
+	}
+
+	return ctx.JSON(staffList)
+}

@@ -85,11 +85,13 @@ func main() {
 	apiv1.Delete("/user", userHandler.HandleDeleteUser)
 
 	// Visitor handlers
-	apiv1.Get("/visitors", visitorHandler.HandleGetVisitors)
+	apiv1.Get("/visitor/all", visitorHandler.HandleGetVisitors)
 	apiv1.Post("/visitor-entry", visitorHandler.HandleVisitorEntryForm)
 	apiv1.Put("/visitor-exit/:mobile_no", visitorHandler.HandleVisitorExit)
 
 	// Staff handlers
+	apiv1.Get("/staff/all", staffHandler.HandleGetAllStaff)
+	apiv1.Post("/staff", staffHandler.HandleAddStaff)
 	apiv1.Post("/staff-entry", staffHandler.HandleStaffEntryForm)
 	apiv1.Put("/staff-exit/:id", staffHandler.HandleStaffExit)
 

@@ -52,7 +52,7 @@
       },
       {
         "method": "GET",
-        "endpoint": "/visitors",
+        "endpoint": "/visitor/all",
         "description": "Get all visitors",
         "requestBody": {}
       },
@@ -98,9 +98,7 @@
         "description": "Records a new staff entry based on mobile number",
         "request": {
           "body": {
-            "name": "string",
-            "purpose": "string",
-            "image": "string"
+            "purpose": "string"
           },
           "query": {
             "mobile_no": "string"
@@ -119,13 +117,9 @@
       },
       {
         "method": "GET",
-        "endpoint": "/staff",
-        "description": "Gets staff details based on mobile number",
-        "request": {
-          "query": {
-            "mobile_no": "string"
-          }
-        }
+        "endpoint": "/staff/all",
+        "description": "Gets names and mobile numbers of all staff members",
+        "requestBody": {}
       }
     ]
   }
