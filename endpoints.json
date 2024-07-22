@@ -1,0 +1,132 @@
+{
+    "routes": [
+      {
+        "method": "POST",
+        "endpoint": "/auth/login",
+        "description": "User login",
+        "requestBody": {
+          "mobile_no": "string",
+          "password": "string"
+        }
+      },
+      {
+        "method": "POST",
+        "endpoint": "/signup",
+        "description": "Sign up a new user",
+        "requestBody": {
+          "mobile_no": "string",
+          "password": "string"
+        }
+      },
+      {
+        "method": "GET",
+        "endpoint": "/user",
+        "description": "Get user details",
+        "requestBody": {},
+        "auth": "required"
+      },
+      {
+        "method": "PUT",
+        "endpoint": "/user",
+        "description": "Update user details",
+        "requestBody": {
+          "mobile_no": "string"
+        },
+        "auth": "required"
+      },
+      {
+        "method": "PUT",
+        "endpoint": "/user/password",
+        "description": "Update user password",
+        "requestBody": {
+          "new_password": "string"
+        },
+        "auth": "required"
+      },
+      {
+        "method": "DELETE",
+        "endpoint": "/user",
+        "description": "Delete user",
+        "requestBody": {},
+        "auth": "required"
+      },
+      {
+        "method": "GET",
+        "endpoint": "/visitors",
+        "description": "Get all visitors",
+        "requestBody": {}
+      },
+      {
+        "method": "POST",
+        "endpoint": "/visitor-entry",
+        "description": "Add a new visitor entry",
+        "requestBody": {
+          "name": "string",
+          "purpose": "string",
+          "date": "string (ISO 8601)",
+          "address": "string",
+          "vehicle_no": "number",
+          "mobile_no": "string",
+          "image": "string",
+          "appointment": "string"
+        }
+      },
+      {
+        "method": "PUT",
+        "endpoint": "/visitor-exit/:mobile_no",
+        "description": "Update visitor exit time",
+        "requestBody": {},
+        "params": {
+          "mobile_no": "string"
+        }
+      },
+      {
+        "method": "POST",
+        "endpoint": "/staff",
+        "description": "Adds a new staff member with name, mobile number, and image",
+        "request": {
+          "body": {
+            "name": "string",
+            "mobile_no": "string",
+            "image": "string"
+          }
+        }
+      },
+      {
+        "method": "POST",
+        "endpoint": "/staff/entry",
+        "description": "Records a new staff entry based on mobile number",
+        "request": {
+          "body": {
+            "name": "string",
+            "purpose": "string",
+            "image": "string"
+          },
+          "query": {
+            "mobile_no": "string"
+          }
+        }
+      },
+      {
+        "method": "PUT",
+        "endpoint": "/staff/entry/:id",
+        "description": "Records the exit time for a staff entry",
+        "request": {
+          "headers": {
+            "Authorization": "Bearer <token>"
+          }
+        }
+      },
+      {
+        "method": "GET",
+        "endpoint": "/staff",
+        "description": "Gets staff details based on mobile number",
+        "request": {
+          "query": {
+            "mobile_no": "string"
+          }
+        }
+      }
+    ]
+  }
+  
